@@ -3,9 +3,11 @@
     width: 60%;
     height: 400px;
     margin: 50px auto;
+    background-color: white
 
-
-
+}
+body {
+    background-image: url("https://www.desktopbackground.org/p/2015/06/05/959109_nintendo-pokemon-pixel-art-artwork-sprites-wallpapers_3000x2000_h.jpg")
 }
 .hidden {
     display : none;

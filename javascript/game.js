@@ -1,5 +1,10 @@
 var counter = 0
 var timee;
+var soundUrl ="assets/sounds/"
+var audio = ["battle.mp3", "victory.mp3", "lose.mp3"]
+var audio1 = new Audio(soundUrl +audio[0])
+var audio2 = new Audio(soundUrl+audio[1])
+var audio3 = new Audio(soundUrl+audio[2])
 var trivia = {
     
     questions : [
@@ -88,11 +93,24 @@ var trivia = {
 
 
     playAgain : function (){
-
+        $(".revealed").removeClass("hidden")
+        $(".response2").html("Correct: " + trivia.right +"<br>Wrong: "+ trivia.wrong+ "<br>Skipped: "+ trivia.skipped)
+        if(trivia.right === 5){
+            audio1.pause()
+            audio2.loop=true
+            audio2.play()
+            
+        }else {
+            audio1.pause()
+            audio3.loop=true
+            audio3.play()
+        }
+        
+        
         for (i=0; i < this["questions"].length; i++){
             this.questions[i].complete = false
         }
-        $(".start").removeClass("hidden")
+        $(".start").removeClass("hidden").attr("style","bottom:-215px")
     },
 
 
@@ -124,6 +142,7 @@ var trivia = {
                 counter = 0
                 clearInterval(timee)
                 $(".container").addClass("hidden")
+
                 this.playAgain()
                 return
             }
@@ -172,8 +191,14 @@ function shuffle(array) {
 
 //////////////////////on-click
 $(document).ready(function(){
-    $(".start").on("click", function(){
 
+    $(".start").on("click", function(){
+        $(".revealed").addClass("hidden")
+        $(".response1").empty()
+        $(".response2").empty()
+        audio1.currentTime=0
+        audio1.loop = true
+        audio1.play()
         trivia.generate()
     })
 
@@ -185,20 +210,28 @@ $(document).ready(function(){
         if( $(this).text() === trivia.currentAnswer){
             $(".response2").empty()
             $(".response1").text("Good Job!")
+            trivia.right++
             trivia.reveal()
             for(i=0; i< trivia["questions"].length; i++){
                 if(trivia.questions[i].correct === trivia.currentAnswer){
                     trivia.questions[i].complete === true;
                 }
             }
+            if(trivia.right === 5){
+                $(".response1").text("Good Job! You are a pokemon master")
+                trivia.generate()
+            } else {
             setTimeout(function(){
+                
                 $(".revealed").addClass("hidden")
                 trivia.generate()
             }, 4000)
+            }
         } else {
             $(".response1").text("Sorry! You're wrong.")
             $(".response2").text("The correct answer was: " + trivia.currentAnswer)
             trivia.reveal()
+            trivia.wrong++
             for(i=0; i< trivia["questions"].length; i++){
                 if(trivia.questions[i].correct === trivia.currentAnswer){
                     trivia.questions[i].complete === true;
