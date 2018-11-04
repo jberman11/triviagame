@@ -58,7 +58,7 @@ var trivia = {
     wrong : 0,
     skipped: 0, 
     currentAnswer: "",
-    timer: 30,
+    timer: 10,
 
 
     countdown: function(){
@@ -126,7 +126,7 @@ var trivia = {
     generate : function(){
         $(".container").removeClass("hidden")
         $(".question").empty()
-        trivia.timer = 30
+        trivia.timer = 10
         
         $(".answer").each(function(){
             $(this).empty()
@@ -225,7 +225,7 @@ $(document).ready(function(){
                 
                 $(".revealed").addClass("hidden")
                 trivia.generate()
-            }, 4000)
+            }, 3000)
             }
         } else {
             $(".response1").text("Sorry! You're wrong.")
@@ -240,7 +240,7 @@ $(document).ready(function(){
             setTimeout(function(){
                 $(".revealed").addClass("hidden")
                 trivia.generate()
-            }, 4000)
+            }, 3000)
         }
     })
 })
