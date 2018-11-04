@@ -1,0 +1,45 @@
+.wrapper {
+    border: 1px solid black;
+    width: 60%;
+    height: 400px;
+    margin: 50px auto;
+
+
+
+}
+.hidden {
+    display : none;
+}
+.answer {
+    border: 1px solid black;
+    width: 100px;
+    padding: 5px;
+    float: left;
+    margin-left: 45%;
+    margin-top: 20px;
+    text-align: center;
+}
+h2 {
+    text-align: center; 
+}
+button {
+    width: 70px;
+    margin-left: 46%;
+    position: relative ;
+    bottom: -275px;
+}
+.question {
+    text-align: center;
+    width: 89%;
+    margin-bottom: 50px;
+}
+.timer {
+    float:left;
+    margin-left: 11%;
+}
+.response1 .response2 {
+    display: inline-block
+}
+.revealed {
+    text-align: center;
+}
